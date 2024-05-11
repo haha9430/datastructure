@@ -1,6 +1,6 @@
 #ifndef LIST_H
 #define LIST_H
-
+#include <iostream>
 // TODO: List 클래스 정의 작성
 #include "linked_list.h"
 

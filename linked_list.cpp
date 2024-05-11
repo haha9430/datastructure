@@ -7,30 +7,30 @@ LinkedList::LinkedList() {
 }
 
 LinkedList::~LinkedList() {
-    for(int i = size_ - 1; i >= 0; i--) {
-        remove(i);
+    for(int i = 0; i < size_; i++) {
+        remove(0);
     }
 }
 
 void LinkedList::print() {
-    std::string printLL = "";
     Node* cur = head_;
     for(int i = 0; i < size_ - 1; i++) {
-        printLL += cur->value_ + " ";
+        std::cout << cur->value_ << " ";
         cur = cur->next_;
     }
-    printLL += cur->value_;
-    std::cout << printLL << std::endl;
+    std::cout << cur-> value_ << std::endl;
 }
 
 void LinkedList::insert(int index, int value) {
     Node* newNode = new Node(value);
-
     Node* cur = head_;
     Node* pre = head_;
 
-    if(index <= size_ - 1) {
+    if(index <= size_) {
         for(int i = 0; i < index; i++) {
+            if(cur != head_) {
+                pre = pre->next_;
+            }
             cur = cur->next_;
         }
 
@@ -38,7 +38,7 @@ void LinkedList::insert(int index, int value) {
             newNode->next_ = head_;
             head_ = newNode;
         }else{
-            if(cur == NULL){
+            if(cur == nullptr){
                 pre->next_ = newNode;
             }else{
                 pre->next_ = newNode;
@@ -62,7 +62,7 @@ void LinkedList::remove(int index) {
     Node* cur = head_;
     Node* pre = head_;
 
-    if(index <= size_ - 1) {
+    if(index <= size_) {
         for(int i = 0; i < index; i++) {
             if(cur != head_) {
                 pre = pre->next_;
@@ -77,7 +77,7 @@ void LinkedList::remove(int index) {
             pre->next_ = tmp;
         }
 
-        delete tmp;
+        delete cur;
         size_--;
     }
     return;
